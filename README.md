@@ -143,6 +143,24 @@ npm run build
 
 ## 本地部署教程
 
+### 如何获取项目
+
+#### 方法一：克隆仓库
+
+```bash
+git clone https://github.com/youziawa/DTCUP-Quiz.git
+cd DTCUP-Quiz
+```
+
+#### 方法二：下载 ZIP
+
+1. 打开 https://github.com/youziawa/DTCUP-Quiz
+2. 点击 "Code" 按钮
+3. 点击 "Download ZIP"
+4. 解压文件
+
+---
+
 ### 方法一：使用 Node.js 直接运行
 
 1. 确保已安装 Node.js（推荐 v16 或更高版本）
@@ -161,18 +179,55 @@ npm run build
    ```
 6. 打开浏览器访问 http://localhost:5173
 
-### 方法二：构建静态文件部署
+### 方法二：构建静态文件
 
 1. 安装依赖后，执行构建命令：
    ```bash
    npm run build
    ```
 2. 构建完成后，会在项目根目录生成 `dist` 文件夹
-3. 将 `dist` 文件夹中的内容部署到任意 Web 服务器（如 Nginx、Apache）
-4. 或者使用 serve 本地预览：
+3. 将 `dist` 文件夹中的内容部署到任意 Web 服务器
+
+### 方法三：部署到 GitHub Pages
+
+1. 在项目根目录创建 `deploy.sh` 文件：
    ```bash
-   npx serve dist
+   #!/bin/bash
+   npm run build
+   cd dist
+   git init
+   git add .
+   git commit -m "Deploy to GitHub Pages"
+   git push -f https://github.com/youziawa/DTCUP-Quiz.git master:gh-pages
    ```
+2. 或者使用 GitHub Actions（推荐）：
+   - 在项目根目录创建 `.github/workflows/deploy.yml`：
+   ```yaml
+   name: Deploy to GitHub Pages
+   on:
+     push:
+       branches:
+         - main
+   jobs:
+     build-and-deploy:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v3
+         - name: Setup Node.js
+           uses: actions/setup-node@v3
+           with:
+             node-version: '18'
+         - name: Install dependencies
+           run: npm install
+         - name: Build
+           run: npm run build
+         - name: Deploy
+           uses: peaceiris/actions-gh-pages@v3
+           with:
+             github_token: ${{ secrets.GITHUB_TOKEN }}
+             publish_dir: ./dist
+   ```
+3. 推送代码后，访问 `https://youziawa.github.io/DTCUP-Quiz`
 
 ### 方法三：使用 Docker 部署
 
