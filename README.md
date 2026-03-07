@@ -141,6 +141,54 @@ npm run build
 4. **切换模式**：答题过程中可切换"做题模式"和"背题模式"
 5. **查看历史**：首页底部显示练习历史，可查看详情
 
+## 本地部署教程
+
+### 方法一：使用 Node.js 直接运行
+
+1. 确保已安装 Node.js（推荐 v16 或更高版本）
+2. 克隆或下载项目到本地
+3. 进入项目目录：
+   ```bash
+   cd dtcup-quiz
+   ```
+4. 安装依赖：
+   ```bash
+   npm install
+   ```
+5. 启动开发服务器：
+   ```bash
+   npm run dev
+   ```
+6. 打开浏览器访问 http://localhost:5173
+
+### 方法二：构建静态文件部署
+
+1. 安装依赖后，执行构建命令：
+   ```bash
+   npm run build
+   ```
+2. 构建完成后，会在项目根目录生成 `dist` 文件夹
+3. 将 `dist` 文件夹中的内容部署到任意 Web 服务器（如 Nginx、Apache）
+4. 或者使用 serve 本地预览：
+   ```bash
+   npx serve dist
+   ```
+
+### 方法三：使用 Docker 部署
+
+1. 在项目根目录创建 `Dockerfile`：
+   ```dockerfile
+   FROM nginx:alpine
+   COPY dist/ /usr/share/nginx/html/
+   EXPOSE 80
+   ```
+2. 构建并运行容器：
+   ```bash
+   docker build -t dtcup-quiz .
+   docker run -d -p 8080:80 dtcup-quiz
+   ```
+3. 打开浏览器访问 http://localhost:8080
+
 ## 许可证
 
 MIT License
