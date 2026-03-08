@@ -444,10 +444,13 @@ if (store.currentIndex >= 0 && store.questions.length > 0) {
 
 .question-card {
   flex: 1;
+  min-height: 500px;
   background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 36px;
   box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
 }
 
 .question-type {
@@ -800,6 +803,7 @@ if (store.currentIndex >= 0 && store.questions.length > 0) {
   .question-card {
     padding: 16px 12px;
     border-radius: 12px;
+    min-height: 400px;
   }
 
   .question-type {
@@ -850,13 +854,14 @@ if (store.currentIndex >= 0 && store.questions.length > 0) {
 
   .action-row {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
 
   .action-row .el-button {
     width: 100%;
-    height: 44px;
-    font-size: 14px;
+    height: 56px;
+    font-size: 16px;
+    font-weight: 600;
   }
 }
 

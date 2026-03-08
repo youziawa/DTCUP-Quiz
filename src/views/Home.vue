@@ -401,25 +401,26 @@ const startQuizFromWrong = async () => {
 
 .action-buttons {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
   justify-content: center;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .action-btn {
-  padding: 18px 28px;
+  padding: 18px 20px;
   font-size: 1rem;
   font-weight: 600;
   min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
+  white-space: nowrap;
 }
 
 .action-btn:hover {
@@ -627,17 +628,20 @@ const startQuizFromWrong = async () => {
   }
 
   .action-btn {
-    padding: 14px 18px;
-    font-size: 0.95rem;
-    min-height: 54px;
+    padding: 16px 12px;
+    font-size: 0.9rem;
+    min-height: 56px;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .action-btn .el-icon {
+    font-size: 1.2rem;
   }
 
   .btn-text {
-    display: none;
-  }
-
-  .action-btn::after {
-    content: attr(aria-label);
+    display: inline;
+    font-size: 0.85rem;
   }
 }
 
@@ -648,22 +652,43 @@ const startQuizFromWrong = async () => {
   }
 
   .stat-card :deep(.el-card__body) {
-    padding: 20px 12px;
+    padding: 16px 10px;
   }
 
   .stat-icon {
-    width: 44px;
-    height: 44px;
-    font-size: 22px;
-    margin-bottom: 12px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    margin-bottom: 10px;
   }
 
   .stat-value {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   .stat-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .action-btn {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    min-height: 52px;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .action-btn .el-icon {
+    font-size: 1.1rem;
+  }
+
+  .btn-text {
+    display: inline;
   }
 
   .action-buttons {
