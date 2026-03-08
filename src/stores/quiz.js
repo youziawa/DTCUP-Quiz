@@ -60,6 +60,16 @@ export const useQuizStore = defineStore('quiz', () => {
     saveToStorage()
   }, { deep: true })
 
+  watch(practiceType, (newVal, oldVal) => {
+    if (oldVal === 'random' && newVal === 'normal') {
+      if (backupQuestions.value.length > 0 && questions.value.length !== backupQuestions.value.length) {
+        questions.value = [...backupQuestions.value]
+        userAnswers.value = {}
+        wrongNotes.value = []
+      }
+    }
+  })
+
   const totalQuestions = computed(() => questions.value.length)
   const answeredCount = computed(() => Object.keys(userAnswers.value).length)
   const correctCount = computed(() => {
