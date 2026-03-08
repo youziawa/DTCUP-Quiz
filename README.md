@@ -71,78 +71,6 @@ dtcup-quiz/
 npm install
 ```
 
-### 启动开发服务器
-
-```bash
-npm run dev
-```
-
-访问 http://localhost:5173
-
-### 构建生产版本
-
-```bash
-npm run build
-```
-
-## 题库格式
-
-题库采用 JSON 格式，结构如下：
-
-```json
-{
-  "name": "题库名称",
-  "questions": [
-    {
-      "type": "single",
-      "question": "题目内容",
-      "options": ["选项A", "选项B", "选项C", "选项D"],
-      "answer": 0,
-      "explanation": "解析内容"
-    },
-    {
-      "type": "multiple",
-      "question": "题目内容",
-      "options": ["选项A", "选项B", "选项C", "选项D"],
-      "answer": [0, 2],
-      "explanation": "解析内容"
-    },
-    {
-      "type": "judge",
-      "question": "题目内容",
-      "options": ["正确", "错误"],
-      "answer": 0,
-      "explanation": "解析内容"
-    }
-  ]
-}
-```
-
-### 字段说明
-
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| type | string | 题目类型：`single`(单选)、`multiple`(多选)、`judge`(判断) |
-| question | string | 题目内容 |
-| options | array | 选项列表 |
-| answer | number/array | 答案（单选/判断为数字，多选为数字数组） |
-| explanation | string | 题目解析 |
-
-### 答案索引
-
-- 单选题/判断题：`0` 表示第一个选项，`1` 表示第二个选项，以此类推
-- 多选题：`[0, 2]` 表示选择第一和第三个选项
-
-## 使用说明
-
-1. **开始刷题**：点击首页"开始刷题"按钮进入顺序练习
-2. **随机练习**：点击"随机练习"从题库中随机抽取题目
-3. **巩固错题**：完成练习后，可点击"巩固错题"专门练习错题
-4. **切换模式**：答题过程中可切换"做题模式"和"背题模式"
-5. **查看历史**：首页底部显示练习历史，可查看详情
-
-## 本地部署教程
-
 ### 如何获取项目
 
 #### 方法一：克隆仓库
@@ -243,6 +171,62 @@ cd DTCUP-Quiz
    docker run -d -p 8080:80 dtcup-quiz
    ```
 3. 打开浏览器访问 http://localhost:8080
+
+## 题库格式
+
+题库采用 JSON 格式，结构如下：
+
+```json
+{
+  "name": "题库名称",
+  "questions": [
+    {
+      "type": "single",
+      "question": "题目内容",
+      "options": ["选项A", "选项B", "选项C", "选项D"],
+      "answer": 0,
+      "explanation": "解析内容"
+    },
+    {
+      "type": "multiple",
+      "question": "题目内容",
+      "options": ["选项A", "选项B", "选项C", "选项D"],
+      "answer": [0, 2],
+      "explanation": "解析内容"
+    },
+    {
+      "type": "judge",
+      "question": "题目内容",
+      "options": ["正确", "错误"],
+      "answer": 0,
+      "explanation": "解析内容"
+    }
+  ]
+}
+```
+
+### 字段说明
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| type | string | 题目类型：`single`(单选)、`multiple`(多选)、`judge`(判断) |
+| question | string | 题目内容 |
+| options | array | 选项列表 |
+| answer | number/array | 答案（单选/判断为数字，多选为数字数组） |
+| explanation | string | 题目解析 |
+
+### 答案索引
+
+- 单选题/判断题：`0` 表示第一个选项，`1` 表示第二个选项，以此类推
+- 多选题：`[0, 2]` 表示选择第一和第三个选项
+
+## 使用说明
+
+1. **开始刷题**：点击首页"开始刷题"按钮进入顺序练习
+2. **随机练习**：点击"随机练习"从题库中随机抽取题目
+3. **巩固错题**：完成练习后，可点击"巩固错题"专门练习错题
+4. **切换模式**：答题过程中可切换"做题模式"和"背题模式"
+5. **查看历史**：首页底部显示练习历史，可查看详情
 
 ## 许可证
 
