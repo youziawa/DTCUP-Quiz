@@ -7,6 +7,7 @@ const STORAGE_KEY = 'dtcup-quiz-data'
 export const useQuizStore = defineStore('quiz', () => {
   const currentBank = ref(null)
   const questions = ref([])
+  const backupQuestions = ref([])
   const currentIndex = ref(0)
   const userAnswers = ref({})
   const wrongNotes = ref([])
@@ -21,6 +22,7 @@ export const useQuizStore = defineStore('quiz', () => {
         const parsed = JSON.parse(data)
         currentBank.value = parsed.currentBank || null
         questions.value = parsed.questions || []
+        backupQuestions.value = parsed.backupQuestions || parsed.questions || []
         currentIndex.value = parsed.currentIndex || 0
         userAnswers.value = parsed.userAnswers || {}
         wrongNotes.value = parsed.wrongNotes || []
@@ -38,6 +40,7 @@ export const useQuizStore = defineStore('quiz', () => {
       const data = {
         currentBank: currentBank.value,
         questions: questions.value,
+        backupQuestions: backupQuestions.value,
         currentIndex: currentIndex.value,
         userAnswers: userAnswers.value,
         wrongNotes: wrongNotes.value,
@@ -53,7 +56,7 @@ export const useQuizStore = defineStore('quiz', () => {
 
   loadFromStorage()
 
-  watch([currentBank, questions, currentIndex, userAnswers, wrongNotes, mode, practiceType, practiceHistory], () => {
+  watch([currentBank, questions, backupQuestions, currentIndex, userAnswers, wrongNotes, mode, practiceType, practiceHistory], () => {
     saveToStorage()
   }, { deep: true })
 
@@ -83,6 +86,7 @@ export const useQuizStore = defineStore('quiz', () => {
   function setQuestionBank(bank) {
     currentBank.value = bank.name
     questions.value = bank.questions || []
+    backupQuestions.value = bank.questions || []
     currentIndex.value = 0
     userAnswers.value = {}
     wrongNotes.value = []
@@ -91,6 +95,8 @@ export const useQuizStore = defineStore('quiz', () => {
 
   function startRandomPractice(count = 20) {
     if (questions.value.length === 0) return
+    
+    backupQuestions.value = [...questions.value]
     
     const allQuestions = [...questions.value]
     
@@ -125,9 +131,13 @@ export const useQuizStore = defineStore('quiz', () => {
   }
 
   function startRandomPracticeFromWrong(count = 10) {
-    if (wrongNotes.value.length === 0) {
+    if (wrongNotes.value.length === 0 && backupQuestions.value.length === 0) {
       ElMessage.warning('暂无错题记录，请先完成练习')
       return
+    }
+    
+    if (backupQuestions.value.length === 0) {
+      backupQuestions.value = [...questions.value]
     }
     
     const wrongIndices = [...wrongNotes.value]
@@ -141,7 +151,7 @@ export const useQuizStore = defineStore('quiz', () => {
       date: new Date().toLocaleString(),
       totalQuestions: selectedIndices.length,
       questionIndices: selectedIndices,
-      questions: selectedIndices.map(i => questions.value[i]),
+      questions: selectedIndices.map(i => backupQuestions.value[i]),
       userAnswers: {},
       wrongIndices: [],
       correctCount: 0,
@@ -153,7 +163,7 @@ export const useQuizStore = defineStore('quiz', () => {
       practiceHistory.value = practiceHistory.value.slice(0, 10)
     }
     
-    const selectedQuestions = selectedIndices.map(i => questions.value[i])
+    const selectedQuestions = selectedIndices.map(i => backupQuestions.value[i])
     questions.value = selectedQuestions
     currentIndex.value = 0
     userAnswers.value = {}
@@ -170,7 +180,9 @@ export const useQuizStore = defineStore('quiz', () => {
       history.correctCount = correctCount.value
       history.wrongCount = wrongNotes.value.length
       
-      questions.value = []
+      if (backupQuestions.value.length > 0) {
+        questions.value = [...backupQuestions.value]
+      }
       userAnswers.value = {}
       wrongNotes.value = []
     }
@@ -179,10 +191,12 @@ export const useQuizStore = defineStore('quiz', () => {
 
   function importQuestions(newQuestions) {
     questions.value = [...questions.value, ...newQuestions]
+    backupQuestions.value = [...questions.value]
   }
 
   function clearQuestions() {
     questions.value = []
+    backupQuestions.value = []
     currentIndex.value = 0
     userAnswers.value = {}
     wrongNotes.value = []
