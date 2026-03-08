@@ -2,7 +2,7 @@
   <div class="quiz-container">
     <div class="quiz-header">
       <div class="header-left">
-        <el-button @click="$router.push('/')" :icon="ArrowLeft">返回首页</el-button>
+        <el-button @click="handleBack" :icon="ArrowLeft">返回首页</el-button>
         <span class="bank-name" v-if="store.currentBank">{{ store.currentBank }}</span>
       </div>
       <div class="header-right">
@@ -135,7 +135,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onBeforeUnmount } from 'vue'
 import { useQuizStore } from '../stores/quiz'
 import { useRouter } from 'vue-router'
 import { ArrowLeft, Check, Close, InfoFilled } from '@element-plus/icons-vue'
@@ -243,6 +243,13 @@ const submitAnswer = () => {
   showResult.value = true
 }
 
+const handleBack = () => {
+  if (store.practiceType === 'random') {
+    store.finishPractice()
+  }
+  router.push('/')
+}
+
 const nextQuestion = () => {
   if (store.currentIndex < store.totalQuestions - 1) {
     store.nextQuestion()
@@ -267,6 +274,12 @@ const goToQuestion = (index) => {
   selectedMultipleAnswers.value = Array.isArray(savedAnswer) ? [...savedAnswer] : []
   showResult.value = isMemorizeMode.value || store.userAnswers[index] !== undefined
 }
+
+onBeforeUnmount(() => {
+  if (store.practiceType === 'random') {
+    store.finishPractice()
+  }
+})
 
 if (store.currentIndex >= 0 && store.questions.length > 0) {
   const savedAnswer = store.userAnswers[store.currentIndex]
