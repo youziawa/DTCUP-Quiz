@@ -748,6 +748,25 @@ if (store.currentIndex >= 0 && store.questions.length > 0) {
     margin-bottom: 12px;
   }
 
+  .quiz-main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .question-sidebar {
+    width: 100%;
+    max-width: 360px;
+    margin-top: 8px;
+  }
+
+  .question-card {
+    padding: 16px 12px;
+    border-radius: 12px;
+    min-height: 400px;
+    width: 100%;
+    max-width: 360px;
+  }
+
   .header-left {
     gap: 8px;
   }
@@ -798,12 +817,6 @@ if (store.currentIndex >= 0 && store.questions.length > 0) {
     width: 28px;
     height: 28px;
     font-size: 10px;
-  }
-
-  .question-card {
-    padding: 16px 12px;
-    border-radius: 12px;
-    min-height: 400px;
   }
 
   .question-type {

@@ -673,6 +673,7 @@ const startQuizFromWrong = async () => {
   .action-buttons {
     grid-template-columns: 1fr;
     gap: 10px;
+    max-width: 320px;
   }
 
   .action-btn {
@@ -689,11 +690,6 @@ const startQuizFromWrong = async () => {
 
   .btn-text {
     display: inline;
-  }
-
-  .action-buttons {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
   }
 
   .history-header {
