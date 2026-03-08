@@ -249,29 +249,36 @@ const clearBank = async () => {
 .manage-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 32px 20px;
 }
 
 .manage-header {
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+  padding: 16px 20px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .manage-header h2 {
   margin: 0;
+  color: var(--color-text-primary);
+  font-weight: 700;
 }
 
 .current-bank-card,
 .import-card,
 .preview-card {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .card-header {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text-primary);
 }
 
 .current-bank-info {

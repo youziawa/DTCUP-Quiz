@@ -295,280 +295,341 @@ const startQuizFromWrong = async () => {
 .home-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px 16px;
+  padding: 48px 20px;
 }
 
 .hero-section {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  border-radius: var(--radius-full);
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-primary-darkest) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  color: #909399;
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
 }
 
 .stats-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
 .stat-card {
   text-align: center;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
 }
 
 .stat-card :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 12px;
+  padding: 28px 16px;
 }
 
 .stat-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
-  font-size: 24px;
+  margin-bottom: 16px;
+  font-size: 26px;
+  box-shadow: var(--shadow-md);
 }
 
 .stat-icon.blue {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   color: white;
 }
 
 .stat-icon.green {
-  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
   color: white;
 }
 
 .stat-icon.orange {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
   color: white;
 }
 
 .stat-icon.red {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  background: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
   color: white;
 }
 
 .stat-value {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #303133;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
-  font-size: 0.85rem;
-  color: #909399;
-  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+  font-weight: 500;
 }
 
 .action-buttons {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
   justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .action-btn {
-  padding: 16px 24px;
+  padding: 18px 28px;
   font-size: 1rem;
-  min-height: 56px;
+  font-weight: 600;
+  min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.action-btn:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .action-btn .el-icon {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .history-section {
-  margin-top: 32px;
-  padding: 16px;
-  background: #fff;
-  border-radius: 8px;
+  margin-top: 40px;
+  padding: 24px;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 16px;
-  color: #303133;
-  font-size: 1.2rem;
+  margin-bottom: 24px;
+  color: var(--color-text-primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  border-radius: var(--radius-full);
+  margin: 12px auto 0;
 }
 
 .history-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .history-item {
-  padding: 14px;
-  background: #f5f7fa;
-  border-radius: 8px;
+  padding: 18px;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.history-item:hover {
+  border-color: var(--color-primary-lighter);
+  background: var(--color-surface);
 }
 
 .history-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .history-date {
-  font-size: 0.85rem;
-  color: #909399;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
 }
 
 .history-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  font-size: 0.9rem;
-  color: #606266;
-  margin-bottom: 10px;
+  gap: 16px;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
 }
 
 .history-stats .correct-count {
-  color: #67c23a;
-  font-weight: 600;
+  color: var(--color-primary);
+  font-weight: 700;
 }
 
 .history-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .history-actions .el-button {
   flex: 1;
-  min-height: 40px;
+  min-height: 42px;
+  border-radius: var(--radius-md);
 }
 
 .question-item {
-  padding: 14px;
-  margin-bottom: 14px;
-  border-radius: 8px;
-  background: #f5f7fa;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
 }
 
 .question-item.wrong {
-  border-left: 4px solid #f56c6c;
-  background: #fef0f0;
+  border-left: 4px solid var(--color-error);
+  background: var(--color-error-light);
 }
 
 .question-text {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   word-break: break-word;
+  color: var(--color-text-primary);
+  line-height: 1.6;
 }
 
 .q-num {
-  color: #409eff;
-  font-weight: bold;
+  color: var(--color-primary);
+  font-weight: 700;
 }
 
 .options-list {
-  margin-left: 16px;
+  margin-left: 18px;
 }
 
 .option-item {
-  padding: 8px 10px;
-  margin: 4px 0;
-  border-radius: 4px;
-  background: #fff;
-  font-size: 0.9rem;
+  padding: 10px 12px;
+  margin: 6px 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  font-size: 0.95rem;
 }
 
 .option-item.correct {
-  background: #f0f9eb;
-  border: 1px solid #67c23a;
+  background: var(--color-success-light);
+  border: 1px solid var(--color-primary);
 }
 
 .option-item.wrong {
-  background: #fef0f0;
-  border: 1px solid #f56c6c;
+  background: var(--color-error-light);
+  border: 1px solid var(--color-error);
 }
 
 .opt-label {
-  font-weight: bold;
-  margin-right: 6px;
+  font-weight: 700;
+  margin-right: 8px;
+  color: var(--color-primary);
 }
 
 .answer-info {
-  margin-top: 10px;
-  font-size: 0.85rem;
-  color: #606266;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
 }
 
 .answer-info .answered {
-  color: #409eff;
-  font-weight: bold;
+  color: var(--color-primary);
+  font-weight: 700;
 }
 
 .answer-info .unanswered {
-  color: #909399;
+  color: var(--color-text-muted);
 }
 
 .answer-info .wrong-answer {
-  color: #f56c6c;
-  font-weight: bold;
+  color: var(--color-error);
+  font-weight: 700;
 }
 
 .answer-info .correct-answer {
-  color: #67c23a;
-  font-weight: bold;
+  color: var(--color-primary);
+  font-weight: 700;
 }
 
 .current-bank {
   text-align: center;
-  margin-top: 32px;
+  margin-top: 40px;
 }
 
 @media (max-width: 768px) {
   .home-container {
-    padding: 24px 12px;
+    padding: 32px 16px;
   }
 
   .stats-cards {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 14px;
   }
 
   .title {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .subtitle {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .action-buttons {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .action-btn {
-    padding: 14px 16px;
-    font-size: 0.9rem;
-    min-height: 52px;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    min-height: 54px;
   }
 
   .btn-text {
@@ -583,25 +644,26 @@ const startQuizFromWrong = async () => {
 @media (max-width: 480px) {
   .stats-cards {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 12px;
   }
 
   .stat-card :deep(.el-card__body) {
-    padding: 16px 8px;
+    padding: 20px 12px;
   }
 
   .stat-icon {
-    width: 42px;
-    height: 42px;
-    font-size: 20px;
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+    margin-bottom: 12px;
   }
 
   .stat-value {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .stat-label {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
 
   .action-buttons {
@@ -612,11 +674,11 @@ const startQuizFromWrong = async () => {
   .history-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
   }
 
   .history-stats {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
   }
 
   .history-actions {
@@ -628,18 +690,18 @@ const startQuizFromWrong = async () => {
   }
 
   .question-text {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .option-item {
-    font-size: 0.85rem;
-    padding: 6px 8px;
+    font-size: 0.88rem;
+    padding: 8px 10px;
   }
 }
 
 @media (min-width: 1200px) {
   .title {
-    font-size: 3rem;
+    font-size: 3.2rem;
   }
 
   .stats-cards {
@@ -661,11 +723,11 @@ const startQuizFromWrong = async () => {
   }
 
   .title {
-    font-size: 3.5rem;
+    font-size: 3.6rem;
   }
 
   .stat-value {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
 }
 </style>

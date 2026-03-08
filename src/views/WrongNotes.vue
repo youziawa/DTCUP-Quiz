@@ -217,20 +217,26 @@ const clearWrongNotes = async () => {
 .wrong-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 32px 20px;
 }
 
 .wrong-header {
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
+  padding: 16px 20px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .wrong-header h2 {
   margin: 0;
   flex: 1;
+  color: var(--color-text-primary);
+  font-weight: 700;
 }
 
 .header-right {
@@ -242,8 +248,8 @@ const clearWrongNotes = async () => {
 .wrong-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 20px;
+  margin-bottom: 32px;
 }
 
 .stat-content {
