@@ -556,4 +556,303 @@ if (store.currentIndex >= 0 && store.questions.length > 0) {
   height: 48px;
   font-size: 16px;
 }
+
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 16px 12px;
+  }
+
+  .quiz-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .header-left {
+    justify-content: space-between;
+  }
+
+  .header-right {
+    justify-content: space-between;
+  }
+
+  .bank-name {
+    font-size: 14px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mode-tip {
+    display: none;
+  }
+
+  .progress-info {
+    margin-bottom: 12px;
+  }
+
+  .current-num {
+    font-size: 20px;
+  }
+
+  .total-num {
+    font-size: 16px;
+  }
+
+  .quiz-main {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .question-sidebar {
+    width: 100%;
+    order: 2;
+  }
+
+  .question-grid {
+    max-height: 200px;
+    justify-content: flex-start;
+  }
+
+  .question-dot {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .question-card {
+    padding: 20px 16px;
+    order: 1;
+  }
+
+  .question-type {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .question-text {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .options-list {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .option-item {
+    padding: 14px 16px;
+    min-height: 52px;
+  }
+
+  .option-label {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    margin-right: 12px;
+  }
+
+  .option-content {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .option-icon {
+    font-size: 18px;
+    margin-left: 8px;
+  }
+
+  .explanation {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .explanation-title {
+    font-size: 14px;
+  }
+
+  .explanation-content {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .action-row {
+    gap: 12px;
+  }
+
+  .action-row .el-button {
+    height: 48px;
+    font-size: 15px;
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-container {
+    padding: 12px 8px;
+  }
+
+  .quiz-header {
+    margin-bottom: 12px;
+  }
+
+  .header-left {
+    gap: 8px;
+  }
+
+  .header-left .el-button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .header-left .el-button .el-icon {
+    margin-right: 4px;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+
+  .header-right .el-switch {
+    transform: scale(0.85);
+  }
+
+  .progress-info {
+    margin-bottom: 8px;
+  }
+
+  .current-num {
+    font-size: 18px;
+  }
+
+  .separator {
+    font-size: 14px;
+  }
+
+  .total-num {
+    font-size: 14px;
+  }
+
+  .question-sidebar {
+    margin-top: 8px;
+  }
+
+  .question-grid {
+    max-height: 150px;
+    gap: 4px;
+  }
+
+  .question-dot {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+  }
+
+  .question-card {
+    padding: 16px 12px;
+    border-radius: 12px;
+  }
+
+  .question-type {
+    margin-bottom: 12px;
+  }
+
+  .question-type .el-tag {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .question-text {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .options-list {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .option-item {
+    padding: 12px;
+    min-height: 48px;
+    border-radius: 8px;
+  }
+
+  .option-label {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .option-content {
+    font-size: 13px;
+  }
+
+  .explanation {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  .explanation-content {
+    font-size: 13px;
+  }
+
+  .action-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .action-row .el-button {
+    width: 100%;
+    height: 44px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .quiz-container {
+    padding: 32px 24px;
+  }
+
+  .question-card {
+    padding: 40px;
+  }
+
+  .question-text {
+    font-size: 20px;
+    margin-bottom: 36px;
+  }
+
+  .option-item {
+    padding: 20px 24px;
+  }
+
+  .option-content {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .quiz-container {
+    max-width: 1400px;
+    padding: 40px 32px;
+  }
+
+  .question-card {
+    padding: 48px;
+  }
+
+  .question-text {
+    font-size: 22px;
+  }
+
+  .option-content {
+    font-size: 18px;
+  }
+}
 </style>

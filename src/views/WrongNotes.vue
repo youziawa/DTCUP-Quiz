@@ -463,4 +463,129 @@ const clearWrongNotes = async () => {
     gap: 8px;
   }
 }
+
+@media (max-width: 480px) {
+  .wrong-container {
+    padding: 12px 8px;
+  }
+
+  .wrong-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .wrong-header .el-button {
+    width: 100%;
+  }
+
+  .wrong-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .header-right {
+    width: 100%;
+  }
+
+  .header-right .el-switch {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .wrong-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-content {
+    gap: 10px;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+  }
+
+  .action-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .action-bar .el-button {
+    width: 100%;
+  }
+
+  .wrong-item {
+    margin-bottom: 0;
+  }
+
+  .wrong-item :deep(.el-card__body) {
+    padding: 12px;
+  }
+
+  .question-num {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .original-num {
+    font-size: 12px;
+  }
+
+  .header-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .question-text {
+    font-size: 14px;
+  }
+
+  .options-list {
+    gap: 8px;
+  }
+
+  .option-item {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .option-label {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+    margin-right: 8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrong-container {
+    padding: 32px 24px;
+  }
+
+  .wrong-stats {
+    gap: 20px;
+  }
+
+  .action-bar {
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .wrong-list {
+    gap: 24px;
+  }
+}
 </style>

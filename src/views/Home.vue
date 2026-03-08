@@ -53,18 +53,20 @@
         size="large" 
         :disabled="store.totalQuestions === 0"
         @click="startQuiz"
+        class="action-btn"
       >
         <el-icon><VideoPlay /></el-icon>
-        开始刷题
+        <span class="btn-text">开始刷题</span>
       </el-button>
       
       <el-button 
         size="large"
         :disabled="store.totalQuestions === 0"
         @click="startQuizRandom"
+        class="action-btn"
       >
         <el-icon><Refresh /></el-icon>
-        随机练习
+        <span class="btn-text">随机练习</span>
       </el-button>
 
       <el-button 
@@ -72,9 +74,10 @@
         type="info"
         :disabled="store.wrongNotes.length === 0"
         @click="startQuizFromWrong"
+        class="action-btn"
       >
         <el-icon><RefreshRight /></el-icon>
-        巩固错题
+        <span class="btn-text">巩固错题</span>
       </el-button>
 
       <el-button 
@@ -82,14 +85,15 @@
         type="warning"
         :disabled="store.wrongNotes.length === 0"
         @click="$router.push('/wrong')"
+        class="action-btn"
       >
         <el-icon><Warning /></el-icon>
-        错题回顾
+        <span class="btn-text">错题回顾</span>
       </el-button>
       
-      <el-button size="large" type="success" @click="$router.push('/manage')">
+      <el-button size="large" type="success" @click="$router.push('/manage')" class="action-btn">
         <el-icon><FolderAdd /></el-icon>
-        题库管理
+        <span class="btn-text">题库管理</span>
       </el-button>
     </div>
 
@@ -101,44 +105,35 @@
 
     <div class="history-section" v-if="store.practiceHistory.length > 0">
       <h3 class="section-title">练习历史</h3>
-      <el-table :data="store.practiceHistory" style="width: 100%">
-        <el-table-column prop="date" label="时间" width="180" />
-        <el-table-column label="类型" width="100">
-          <template #default="{ row }">
-            <el-tag :type="row.type === 'random' ? 'warning' : row.type === 'wrong' ? 'info' : 'primary'">
+      <div class="history-list">
+        <div v-for="(row, index) in store.practiceHistory" :key="row.id" class="history-item">
+          <div class="history-header">
+            <el-tag :type="row.type === 'random' ? 'warning' : row.type === 'wrong' ? 'info' : 'primary'" size="small">
               {{ row.type === 'random' ? '随机练习' : row.type === 'wrong' ? '巩固错题' : '顺序练习' }}
             </el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column prop="totalQuestions" label="总题数" width="100" />
-        <el-table-column prop="answeredCount" label="已答" width="80" />
-        <el-table-column prop="correctCount" label="正确" width="80">
-          <template #default="{ row }">
-            <span style="color: #67c23a">{{ row.correctCount || 0 }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column label="正确率" width="100">
-          <template #default="{ row }">
+            <span class="history-date">{{ row.date }}</span>
+          </div>
+          <div class="history-stats">
+            <span>总题: {{ row.totalQuestions }}</span>
+            <span>已答: {{ row.answeredCount }}</span>
+            <span class="correct-count">正确: {{ row.correctCount || 0 }}</span>
             <span v-if="row.answeredCount > 0">
-              {{ Math.round((row.correctCount || 0) / row.answeredCount * 100) }}%
+              正确率: {{ Math.round((row.correctCount || 0) / row.answeredCount * 100) }}%
             </span>
-            <span v-else>-</span>
-          </template>
-        </el-table-column>
-        <el-table-column label="操作" width="150">
-          <template #default="{ row, $index }">
+          </div>
+          <div class="history-actions">
             <el-button type="primary" size="small" @click="viewHistoryDetail(row)">
               查看详情
             </el-button>
-            <el-button type="danger" size="small" @click="deleteHistory($index)">
+            <el-button type="danger" size="small" @click="deleteHistory(index)">
               删除
             </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <el-dialog v-model="dialogVisible" title="练习详情" width="70%">
+    <el-dialog v-model="dialogVisible" title="练习详情" width="90%" class="history-dialog">
       <div v-if="selectedHistory">
         <el-tabs v-model="activeTab">
           <el-tab-pane label="全部题目" name="all">
@@ -300,34 +295,34 @@ const startQuizFromWrong = async () => {
 .home-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 16px;
 }
 
 .hero-section {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .title {
-  font-size: 48px;
+  font-size: 2.5rem;
   font-weight: 700;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .subtitle {
-  font-size: 20px;
+  font-size: 1.1rem;
   color: #909399;
 }
 
 .stats-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .stat-card {
@@ -338,18 +333,18 @@ const startQuizFromWrong = async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  padding: 20px 12px;
 }
 
 .stat-icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
-  font-size: 28px;
+  margin-bottom: 12px;
+  font-size: 24px;
 }
 
 .stat-icon.blue {
@@ -373,45 +368,103 @@ const startQuizFromWrong = async () => {
 }
 
 .stat-value {
-  font-size: 32px;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #303133;
 }
 
 .stat-label {
-  font-size: 14px;
+  font-size: 0.85rem;
   color: #909399;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .action-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
   justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
 }
 
-.action-buttons .el-button {
-  padding: 20px 40px;
-  font-size: 16px;
+.action-btn {
+  padding: 16px 24px;
+  font-size: 1rem;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.action-btn .el-icon {
+  font-size: 1.2rem;
 }
 
 .history-section {
-  margin-top: 40px;
-  padding: 20px;
+  margin-top: 32px;
+  padding: 16px;
   background: #fff;
   border-radius: 8px;
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   color: #303133;
+  font-size: 1.2rem;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-item {
+  padding: 14px;
+  background: #f5f7fa;
+  border-radius: 8px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.history-date {
+  font-size: 0.85rem;
+  color: #909399;
+}
+
+.history-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: #606266;
+  margin-bottom: 10px;
+}
+
+.history-stats .correct-count {
+  color: #67c23a;
+  font-weight: 600;
+}
+
+.history-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.history-actions .el-button {
+  flex: 1;
+  min-height: 40px;
 }
 
 .question-item {
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 14px;
+  margin-bottom: 14px;
   border-radius: 8px;
   background: #f5f7fa;
 }
@@ -422,9 +475,10 @@ const startQuizFromWrong = async () => {
 }
 
 .question-text {
-  font-size: 15px;
+  font-size: 0.95rem;
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  word-break: break-word;
 }
 
 .q-num {
@@ -433,14 +487,15 @@ const startQuizFromWrong = async () => {
 }
 
 .options-list {
-  margin-left: 20px;
+  margin-left: 16px;
 }
 
 .option-item {
-  padding: 8px 12px;
+  padding: 8px 10px;
   margin: 4px 0;
   border-radius: 4px;
   background: #fff;
+  font-size: 0.9rem;
 }
 
 .option-item.correct {
@@ -455,12 +510,12 @@ const startQuizFromWrong = async () => {
 
 .opt-label {
   font-weight: bold;
-  margin-right: 8px;
+  margin-right: 6px;
 }
 
 .answer-info {
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 0.85rem;
   color: #606266;
 }
 
@@ -485,16 +540,132 @@ const startQuizFromWrong = async () => {
 
 .current-bank {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 32px;
 }
 
 @media (max-width: 768px) {
+  .home-container {
+    padding: 24px 12px;
+  }
+
   .stats-cards {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
-  
+
   .title {
-    font-size: 32px;
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .action-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .action-btn {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    min-height: 52px;
+  }
+
+  .btn-text {
+    display: none;
+  }
+
+  .action-btn::after {
+    content: attr(aria-label);
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .stat-card :deep(.el-card__body) {
+    padding: 16px 8px;
+  }
+
+  .stat-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .history-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .history-stats {
+    font-size: 0.85rem;
+  }
+
+  .history-actions {
+    flex-direction: column;
+  }
+
+  .history-actions .el-button {
+    width: 100%;
+  }
+
+  .question-text {
+    font-size: 0.9rem;
+  }
+
+  .option-item {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .stats-cards {
+    gap: 24px;
+  }
+
+  .action-buttons {
+    gap: 20px;
+  }
+
+  .action-btn {
+    padding: 20px 36px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .home-container {
+    max-width: 1100px;
+  }
+
+  .title {
+    font-size: 3.5rem;
+  }
+
+  .stat-value {
+    font-size: 2.2rem;
   }
 }
 </style>

@@ -25,6 +25,25 @@
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 
+               'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 #app {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ed 100%);
@@ -47,6 +66,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+  padding: 0 16px;
 }
 
 .footer-info {
@@ -77,10 +97,21 @@
   text-decoration: none;
   font-size: 13px;
   transition: color 0.3s;
+  padding: 8px 12px;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-link:hover {
   color: #66b1ff;
+}
+
+.footer-link:active {
+  background-color: #f0f0f0;
+  border-radius: 8px;
 }
 
 .divider {
@@ -91,6 +122,34 @@
   .footer-content {
     flex-direction: column;
     text-align: center;
+  }
+  
+  .footer {
+    padding: 16px 12px;
+  }
+  
+  .footer-link {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 </style>

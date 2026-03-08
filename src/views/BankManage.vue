@@ -404,4 +404,120 @@ const clearBank = async () => {
   font-size: 14px;
   padding: 12px;
 }
+
+@media (max-width: 768px) {
+  .manage-container {
+    padding: 16px 12px;
+  }
+
+  .manage-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .manage-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .current-bank-info {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .bank-detail {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .option-input {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .option-input .el-input {
+    width: 100%;
+  }
+
+  .preview-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .preview-num {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .question-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .question-item .el-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .manage-container {
+    padding: 12px 8px;
+  }
+
+  .manage-header .el-button {
+    width: 100%;
+  }
+
+  .card-header {
+    font-size: 14px;
+  }
+
+  .format-tip code {
+    font-size: 11px;
+    word-break: break-all;
+  }
+
+  .import-tip :deep(.el-alert__content) {
+    font-size: 12px;
+  }
+
+  .el-form-item {
+    margin-bottom: 16px;
+  }
+
+  .el-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .question-list {
+    max-height: 150px;
+  }
+
+  .added-questions h4 {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .manage-container {
+    padding: 32px 24px;
+  }
+
+  .manage-header {
+    margin-bottom: 32px;
+  }
+
+  .current-bank-card,
+  .import-card,
+  .preview-card {
+    margin-bottom: 32px;
+  }
+}
 </style>
